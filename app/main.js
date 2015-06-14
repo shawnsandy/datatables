@@ -54,71 +54,71 @@ webpackJsonp([0],{
 	
 	    getDefaultProps:function(){
 	
-	    return {
-	        dataUrl: '',
-	        selector:'table table-hover'
-	    }
+	        return {
+	            dataUrl: '',
+	            selector: 'table table-hover'
+	        }
 	
-	},
+	    },
 	
-	componentDidMount:function(){
+	    componentDidMount:function(){
 	
-	    $.ajax({
-	        type: "GET",
-	        url: this.props.dataUrl,
-	        dataType: "json",
-	        success: function (data) {
-	            this.setState({data: data});
-	            //console.log(this.state.data)
-	        }.bind(this)
-	    });
-	    $(React.findDOMNode(this.refs.dataTable)).DataTable({});
-	},
-	componentWillUpdate: function () {
-	    var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
-	    table.destroy();
-	},
-	componentDidUpdate: function () {
-	    $(React.findDOMNode(this.refs.dataTable)).DataTable();
-	},
-	componentWillUnmount: function () {
-	    var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
-	    table.destroy();
-	},
-	getInitialState: function () {
-	    return {
-	        'data': []
-	    }
-	},
+	        $.ajax({
+	            type: "GET",
+	            url: this.props.dataUrl,
+	            dataType: "json",
+	            success: function (data) {
+	                this.setState({data: data});
+	                //console.log(this.state.data)
+	            }.bind(this)
+	        });
+	        $(React.findDOMNode(this.refs.dataTable)).DataTable({});
+	    },
+	    componentWillUpdate: function () {
+	        var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
+	        table.destroy();
+	    },
+	    componentDidUpdate: function () {
+	        $(React.findDOMNode(this.refs.dataTable)).DataTable();
+	    },
+	    componentWillUnmount: function () {
+	        var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
+	        table.destroy();
+	    },
+	    getInitialState: function () {
+	        return {
+	            'data': []
+	        }
+	    },
 	
-	render: function () {
+	    render: function () {
 	
-	    var rows = this.state.data.map(function (row) {
+	        var rows = this.state.data.map(function (row) {
 	            return (
 	                React.createElement("tr", {key: row.id}, 
-	        React.createElement("td", null, row.first_name, " ", row.last_name, " "), 
-	React.createElement("td", null, row.username), 
-	React.createElement("td", null, row.password, " "), 
-	React.createElement("td", null, row.ssn, " "), 
-	React.createElement("td", null, row.gender, " "), 
-	React.createElement("td", null, row.updated_at, " ")
-	)
-	);
-	})
+	                    React.createElement("td", null, row.first_name, " ", row.last_name, " "), 
+	                    React.createElement("td", null, row.username), 
+	                    React.createElement("td", null, row.password, " "), 
+	                    React.createElement("td", null, row.ssn, " "), 
+	                    React.createElement("td", null, row.gender, " "), 
+	                    React.createElement("td", null, row.updated_at, " ")
+	                )
+	            );
+	        })
 	
-	return (
-	    React.createElement("div", null, 
-	    React.createElement("table", {id: "datatable", ref: "dataTable", className: this.props.selector}, 
-	    React.createElement(DataTable.Caption, null), 
-	    React.createElement(DataTable.Header, null), 
-	    React.createElement(DataTable.Header, {tag: "tfoot"}), 
-	    React.createElement("tbody", null, 
-	    rows
-	    )
-	    )
-	    )
-	);
-	}
+	        return (
+	            React.createElement("div", null, 
+	                React.createElement("table", {id: "datatable", ref: "dataTable", className: this.props.selector}, 
+	                    React.createElement(DataTable.Caption, null), 
+	                    React.createElement(DataTable.Header, null), 
+	
+	                    React.createElement("tbody", null, 
+	                    rows
+	                    )
+	                )
+	            )
+	        );
+	    }
 	
 	});
 	
@@ -135,63 +135,63 @@ webpackJsonp([0],{
 	DataTable.Caption = React.createClass({displayName: "DataTable.Caption",
 	
 	    getDefaultProps:function(){
-	    return {
-	        caption: "UI DATATABLE"
-	    }
-	},
+	        return {
+	            caption: "UI DATATABLE"
+	        }
+	    },
 	
-	render: function () {
-	    return (
-	        React.createElement("caption", null,  this.props.caption)
-	);
-	}
+	    render: function () {
+	        return (
+	            React.createElement("caption", null,  this.props.caption)
+	        );
+	    }
 	
 	});
 	
 	DataTable.Header = React.createClass({displayName: "DataTable.Header",
 	
 	    getDefaultProps:function(){
-	    return {
+	        return {
 	
-	        tag: 'thead',
-	        pagingType: 'full_numbers'
+	            tag: 'thead',
+	            pagingType: 'full_numbers'
+	
+	        }
+	    },
+	
+	    render: function () {
+	
+	        var tag = this.props.tag;
+	
+	        if (tag == 'tfoot')
+	            return (
+	                React.createElement("tfoot", null, 
+	                React.createElement("tr", null, 
+	                    React.createElement("th", null, "Name"), 
+	                    React.createElement("th", null, "Username"), 
+	                    React.createElement("th", null, "Office"), 
+	                    React.createElement("th", null, "Password"), 
+	                    React.createElement("th", null, "Gender"), 
+	                    React.createElement("th", null, "Updated")
+	                )
+	                )
+	            );
+	        else
+	            return (
+	                React.createElement("thead", null, 
+	                React.createElement("tr", null, 
+	                    React.createElement("th", null, "Name"), 
+	                    React.createElement("th", null, "Username"), 
+	                    React.createElement("th", null, "Office"), 
+	                    React.createElement("th", null, "Password"), 
+	                    React.createElement("th", null, "Gender"), 
+	                    React.createElement("th", null, "Updated")
+	                )
+	                )
+	            );
+	
 	
 	    }
-	},
-	
-	render: function () {
-	
-	    var tag = this.props.tag;
-	
-	    if (tag == 'tfoot')
-	        return (
-	            React.createElement("tfoot", null, 
-	            React.createElement("tr", null, 
-	            React.createElement("th", null, "Name"), 
-	            React.createElement("th", null, "Username"), 
-	            React.createElement("th", null, "Office"), 
-	            React.createElement("th", null, "Password"), 
-	            React.createElement("th", null, "Gender"), 
-	            React.createElement("th", null, "Updated")
-	            )
-	            )
-	);
-	else
-	    return (
-	        React.createElement("thead", null, 
-	        React.createElement("tr", null, 
-	        React.createElement("th", null, "Name"), 
-	        React.createElement("th", null, "Username"), 
-	        React.createElement("th", null, "Office"), 
-	        React.createElement("th", null, "Password"), 
-	        React.createElement("th", null, "Gender"), 
-	        React.createElement("th", null, "Updated")
-	        )
-	        )
-	);
-	
-	
-	}
 	
 	});
 	
@@ -201,66 +201,66 @@ webpackJsonp([0],{
 	 */
 	DataTable.Button = React.createClass({displayName: "DataTable.Button",
 	
-	        /**
-	         * set your prop validations
-	         *  // You can declare that a prop is a specific JS primitive. By default, these
-	         *  // are all optional.
-	         *  optionalArray: React.PropTypes.array,
-	         *  optionalBool: React.PropTypes.bool,
-	         *  optionalFunc: React.PropTypes.func,
-	         *  optionalNumber: React.PropTypes.number,
-	         *  optionalObject: React.PropTypes.object,
-	         *  optionalString: React.PropTypes.string,
-	         */
+	    /**
+	     * set your prop validations
+	     *  // You can declare that a prop is a specific JS primitive. By default, these
+	     *  // are all optional.
+	     *  optionalArray: React.PropTypes.array,
+	     *  optionalBool: React.PropTypes.bool,
+	     *  optionalFunc: React.PropTypes.func,
+	     *  optionalNumber: React.PropTypes.number,
+	     *  optionalObject: React.PropTypes.object,
+	     *  optionalString: React.PropTypes.string,
+	     */
 	
 	
-	        /**
-	         * define misins
-	         */
-	        //mixins: [],
+	    /**
+	     * define misins
+	     */
+	    //mixins: [],
 	
-	        /**
-	         * Set the default values for your states
-	         */
-	        //getInitialState: function () {},
+	    /**
+	     * Set the default values for your states
+	     */
+	    //getInitialState: function () {},
 	
-	        /**
-	         * det the props default
-	         */
-	        getDefaultProps: function () {
-	            return {
-	                name: 'My Button'
+	    /**
+	     * det the props default
+	     */
+	    getDefaultProps: function () {
+	        return {
+	            name: 'My Button'
 	
-	            }
-	        },
+	        }
+	    },
 	
-	        /**
-	         *
-	         */
-	        //componentWillMount: function () {},
+	    /**
+	     *
+	     */
+	    //componentWillMount: function () {},
 	
-	        /**
-	         *
-	         */
-	        //componentWillReceiveProps: function () {},
+	    /**
+	     *
+	     */
+	    //componentWillReceiveProps: function () {},
 	
-	        /**
-	         *
-	         */
-	        //componentDidMount: function () {},
+	    /**
+	     *
+	     */
+	    //componentDidMount: function () {},
 	
-	        /**
-	         *
-	         */
-	        //componentWillUnmount: function () {},
+	    /**
+	     *
+	     */
+	    //componentWillUnmount: function () {},
 	
-	        render: function () {
-	            return (
-	                React.createElement("button", {className: "btn btn-default"}, 
+	    render: function () {
+	        return (
+	            React.createElement("button", {className: "btn btn-default"}, 
 	                 this.props.name
-	        )
-	);
-	}
+	            )
+	        );
+	    }
 	});
 	
 	

@@ -21,71 +21,71 @@ var DataTable = React.createClass({
 
     getDefaultProps(){
 
-    return {
-        dataUrl: '',
-        selector:'table table-hover'
-    }
+        return {
+            dataUrl: '',
+            selector: 'table table-hover'
+        }
 
-},
+    },
 
-componentDidMount(){
+    componentDidMount(){
 
-    $.ajax({
-        type: "GET",
-        url: this.props.dataUrl,
-        dataType: "json",
-        success: function (data) {
-            this.setState({data: data});
-            //console.log(this.state.data)
-        }.bind(this)
-    });
-    $(React.findDOMNode(this.refs.dataTable)).DataTable({});
-},
-componentWillUpdate: function () {
-    var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
-    table.destroy();
-},
-componentDidUpdate: function () {
-    $(React.findDOMNode(this.refs.dataTable)).DataTable();
-},
-componentWillUnmount: function () {
-    var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
-    table.destroy();
-},
-getInitialState: function () {
-    return {
-        'data': []
-    }
-},
+        $.ajax({
+            type: "GET",
+            url: this.props.dataUrl,
+            dataType: "json",
+            success: function (data) {
+                this.setState({data: data});
+                //console.log(this.state.data)
+            }.bind(this)
+        });
+        $(React.findDOMNode(this.refs.dataTable)).DataTable({});
+    },
+    componentWillUpdate: function () {
+        var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
+        table.destroy();
+    },
+    componentDidUpdate: function () {
+        $(React.findDOMNode(this.refs.dataTable)).DataTable();
+    },
+    componentWillUnmount: function () {
+        var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
+        table.destroy();
+    },
+    getInitialState: function () {
+        return {
+            'data': []
+        }
+    },
 
-render: function () {
+    render: function () {
 
-    var rows = this.state.data.map(function (row) {
+        var rows = this.state.data.map(function (row) {
             return (
                 <tr key={row.id}>
-        <td>{row.first_name} {row.last_name} </td>
-<td>{row.username}</td>
-<td>{row.password} </td>
-<td>{row.ssn} </td>
-<td>{row.gender} </td>
-<td>{row.updated_at} </td>
-</tr>
-);
-})
+                    <td>{row.first_name} {row.last_name} </td>
+                    <td>{row.username}</td>
+                    <td>{row.password} </td>
+                    <td>{row.ssn} </td>
+                    <td>{row.gender} </td>
+                    <td>{row.updated_at} </td>
+                </tr>
+            );
+        })
 
-return (
-    <div>
-    <table id="datatable" ref="dataTable" className={this.props.selector}>
-    <DataTable.Caption />
-    <DataTable.Header />
-    <DataTable.Header tag="tfoot"/>
-    <tbody>
-    {rows}
-    </tbody>
-    </table>
-    </div>
-);
-}
+        return (
+            <div>
+                <table id="datatable" ref="dataTable" className={this.props.selector}>
+                    <DataTable.Caption />
+                    <DataTable.Header />
+
+                    <tbody>
+                    {rows}
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
 
 });
 
@@ -102,63 +102,63 @@ DataTable.Body = React.createClass({
 DataTable.Caption = React.createClass({
 
     getDefaultProps(){
-    return {
-        caption: "UI DATATABLE"
-    }
-},
+        return {
+            caption: "UI DATATABLE"
+        }
+    },
 
-render: function () {
-    return (
-        <caption>{ this.props.caption }</caption>
-);
-}
+    render: function () {
+        return (
+            <caption>{ this.props.caption }</caption>
+        );
+    }
 
 });
 
 DataTable.Header = React.createClass({
 
     getDefaultProps(){
-    return {
+        return {
 
-        tag: 'thead',
-        pagingType: 'full_numbers'
+            tag: 'thead',
+            pagingType: 'full_numbers'
+
+        }
+    },
+
+    render: function () {
+
+        var tag = this.props.tag;
+
+        if (tag == 'tfoot')
+            return (
+                <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Office</th>
+                    <th>Password</th>
+                    <th>Gender</th>
+                    <th>Updated</th>
+                </tr>
+                </tfoot>
+            );
+        else
+            return (
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Office</th>
+                    <th>Password</th>
+                    <th>Gender</th>
+                    <th>Updated</th>
+                </tr>
+                </thead>
+            );
+
 
     }
-},
-
-render: function () {
-
-    var tag = this.props.tag;
-
-    if (tag == 'tfoot')
-        return (
-            <tfoot>
-            <tr>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Office</th>
-            <th>Password</th>
-            <th>Gender</th>
-            <th>Updated</th>
-            </tr>
-            </tfoot>
-);
-else
-    return (
-        <thead>
-        <tr>
-        <th>Name</th>
-        <th>Username</th>
-        <th>Office</th>
-        <th>Password</th>
-        <th>Gender</th>
-        <th>Updated</th>
-        </tr>
-        </thead>
-);
-
-
-}
 
 });
 
@@ -168,66 +168,66 @@ else
  */
 DataTable.Button = React.createClass({
 
-        /**
-         * set your prop validations
-         *  // You can declare that a prop is a specific JS primitive. By default, these
-         *  // are all optional.
-         *  optionalArray: React.PropTypes.array,
-         *  optionalBool: React.PropTypes.bool,
-         *  optionalFunc: React.PropTypes.func,
-         *  optionalNumber: React.PropTypes.number,
-         *  optionalObject: React.PropTypes.object,
-         *  optionalString: React.PropTypes.string,
-         */
+    /**
+     * set your prop validations
+     *  // You can declare that a prop is a specific JS primitive. By default, these
+     *  // are all optional.
+     *  optionalArray: React.PropTypes.array,
+     *  optionalBool: React.PropTypes.bool,
+     *  optionalFunc: React.PropTypes.func,
+     *  optionalNumber: React.PropTypes.number,
+     *  optionalObject: React.PropTypes.object,
+     *  optionalString: React.PropTypes.string,
+     */
 
 
-        /**
-         * define misins
-         */
-        //mixins: [],
+    /**
+     * define misins
+     */
+    //mixins: [],
 
-        /**
-         * Set the default values for your states
-         */
-        //getInitialState: function () {},
+    /**
+     * Set the default values for your states
+     */
+    //getInitialState: function () {},
 
-        /**
-         * det the props default
-         */
-        getDefaultProps: function () {
-            return {
-                name: 'My Button'
+    /**
+     * det the props default
+     */
+    getDefaultProps: function () {
+        return {
+            name: 'My Button'
 
-            }
-        },
+        }
+    },
 
-        /**
-         *
-         */
-        //componentWillMount: function () {},
+    /**
+     *
+     */
+    //componentWillMount: function () {},
 
-        /**
-         *
-         */
-        //componentWillReceiveProps: function () {},
+    /**
+     *
+     */
+    //componentWillReceiveProps: function () {},
 
-        /**
-         *
-         */
-        //componentDidMount: function () {},
+    /**
+     *
+     */
+    //componentDidMount: function () {},
 
-        /**
-         *
-         */
-        //componentWillUnmount: function () {},
+    /**
+     *
+     */
+    //componentWillUnmount: function () {},
 
-        render: function () {
-            return (
-                <button className="btn btn-default">
+    render: function () {
+        return (
+            <button className="btn btn-default">
                 { this.props.name }
-        </button>
-);
-}
+            </button>
+        );
+    }
 });
 
 
