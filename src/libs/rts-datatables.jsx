@@ -17,7 +17,7 @@ var DataTable = require('datatables');
  * Briefly describe your Element here
  */
 
-var DataTable = React.createClass({
+var RtsDataTable = React.createClass({
 
     getDefaultProps(){
 
@@ -76,8 +76,8 @@ var DataTable = React.createClass({
         return (
             <div>
                 <table id="datatable" ref="dataTable" className={this.props.selector}>
-                    <DataTable.Caption />
-                    <DataTable.Header />
+                    <RtsDataTable.Caption />
+                    <RtsDataTable.Header />
 
                     <tbody>
                     {rows}
@@ -90,7 +90,7 @@ var DataTable = React.createClass({
 });
 
 
-DataTable.Body = React.createClass({
+RtsDataTable.Body = React.createClass({
     render: function () {
         return (
             <div>Table Body</div>
@@ -99,7 +99,7 @@ DataTable.Body = React.createClass({
 });
 
 
-DataTable.Caption = React.createClass({
+RtsDataTable.Caption = React.createClass({
 
     getDefaultProps(){
         return {
@@ -115,7 +115,7 @@ DataTable.Caption = React.createClass({
 
 });
 
-DataTable.Header = React.createClass({
+RtsDataTable.Header = React.createClass({
 
     getDefaultProps(){
         return {
@@ -163,75 +163,8 @@ DataTable.Header = React.createClass({
 });
 
 
-/**
- * Namespaced react component
- */
-DataTable.Button = React.createClass({
-
-    /**
-     * set your prop validations
-     *  // You can declare that a prop is a specific JS primitive. By default, these
-     *  // are all optional.
-     *  optionalArray: React.PropTypes.array,
-     *  optionalBool: React.PropTypes.bool,
-     *  optionalFunc: React.PropTypes.func,
-     *  optionalNumber: React.PropTypes.number,
-     *  optionalObject: React.PropTypes.object,
-     *  optionalString: React.PropTypes.string,
-     */
-
-
-    /**
-     * define misins
-     */
-    //mixins: [],
-
-    /**
-     * Set the default values for your states
-     */
-    //getInitialState: function () {},
-
-    /**
-     * det the props default
-     */
-    getDefaultProps: function () {
-        return {
-            name: 'My Button'
-
-        }
-    },
-
-    /**
-     *
-     */
-    //componentWillMount: function () {},
-
-    /**
-     *
-     */
-    //componentWillReceiveProps: function () {},
-
-    /**
-     *
-     */
-    //componentDidMount: function () {},
-
-    /**
-     *
-     */
-    //componentWillUnmount: function () {},
-
-    render: function () {
-        return (
-            <button className="btn btn-default">
-                { this.props.name }
-            </button>
-        );
-    }
-});
-
 
 /**
  * export the element
  */
-module.exports = DataTable;
+module.exports = RtsDataTable;

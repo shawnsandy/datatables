@@ -17,257 +17,10 @@ webpackJsonp([0],{
 	 * webpack compiled components sample file
 	 */
 	
-	var DataTables = __webpack_require__(/*! ../src/libs/datatables.jsx */ 160);
+	var DataTables = __webpack_require__(/*! ../src/libs/rts-datatables.jsx */ 163);
 	
 	React.render(React.createElement(DataTables, {dataUrl: "data/users.json"}), document.getElementById('component'));
 	
-
-
-/***/ },
-
-/***/ 160:
-/*!*********************************!*\
-  !*** ./src/libs/datatables.jsx ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Created by shawnsandy on 6/13/15.
-	 */
-	
-	/**
-	 * @jsx React.DOM
-	 */
-	
-	/**
-	 *
-	 * @type {*|exports}
-	 */
-	var React = __webpack_require__(/*! react */ 1);
-	var $ = __webpack_require__(/*! jquery */ 158);
-	var DataTable = __webpack_require__(/*! datatables */ 161);
-	/**
-	 * Briefly describe your Element here
-	 */
-	
-	var DataTable = React.createClass({displayName: "DataTable",
-	
-	    getDefaultProps:function(){
-	
-	        return {
-	            dataUrl: '',
-	            selector: 'table table-hover'
-	        }
-	
-	    },
-	
-	    componentDidMount:function(){
-	
-	        $.ajax({
-	            type: "GET",
-	            url: this.props.dataUrl,
-	            dataType: "json",
-	            success: function (data) {
-	                this.setState({data: data});
-	                //console.log(this.state.data)
-	            }.bind(this)
-	        });
-	        $(React.findDOMNode(this.refs.dataTable)).DataTable({});
-	    },
-	    componentWillUpdate: function () {
-	        var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
-	        table.destroy();
-	    },
-	    componentDidUpdate: function () {
-	        $(React.findDOMNode(this.refs.dataTable)).DataTable();
-	    },
-	    componentWillUnmount: function () {
-	        var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
-	        table.destroy();
-	    },
-	    getInitialState: function () {
-	        return {
-	            'data': []
-	        }
-	    },
-	
-	    render: function () {
-	
-	        var rows = this.state.data.map(function (row) {
-	            return (
-	                React.createElement("tr", {key: row.id}, 
-	                    React.createElement("td", null, row.first_name, " ", row.last_name, " "), 
-	                    React.createElement("td", null, row.username), 
-	                    React.createElement("td", null, row.password, " "), 
-	                    React.createElement("td", null, row.ssn, " "), 
-	                    React.createElement("td", null, row.gender, " "), 
-	                    React.createElement("td", null, row.updated_at, " ")
-	                )
-	            );
-	        })
-	
-	        return (
-	            React.createElement("div", null, 
-	                React.createElement("table", {id: "datatable", ref: "dataTable", className: this.props.selector}, 
-	                    React.createElement(DataTable.Caption, null), 
-	                    React.createElement(DataTable.Header, null), 
-	
-	                    React.createElement("tbody", null, 
-	                    rows
-	                    )
-	                )
-	            )
-	        );
-	    }
-	
-	});
-	
-	
-	DataTable.Body = React.createClass({displayName: "DataTable.Body",
-	    render: function () {
-	        return (
-	            React.createElement("div", null, "Table Body")
-	        )
-	    }
-	});
-	
-	
-	DataTable.Caption = React.createClass({displayName: "DataTable.Caption",
-	
-	    getDefaultProps:function(){
-	        return {
-	            caption: "UI DATATABLE"
-	        }
-	    },
-	
-	    render: function () {
-	        return (
-	            React.createElement("caption", null,  this.props.caption)
-	        );
-	    }
-	
-	});
-	
-	DataTable.Header = React.createClass({displayName: "DataTable.Header",
-	
-	    getDefaultProps:function(){
-	        return {
-	
-	            tag: 'thead',
-	            pagingType: 'full_numbers'
-	
-	        }
-	    },
-	
-	    render: function () {
-	
-	        var tag = this.props.tag;
-	
-	        if (tag == 'tfoot')
-	            return (
-	                React.createElement("tfoot", null, 
-	                React.createElement("tr", null, 
-	                    React.createElement("th", null, "Name"), 
-	                    React.createElement("th", null, "Username"), 
-	                    React.createElement("th", null, "Office"), 
-	                    React.createElement("th", null, "Password"), 
-	                    React.createElement("th", null, "Gender"), 
-	                    React.createElement("th", null, "Updated")
-	                )
-	                )
-	            );
-	        else
-	            return (
-	                React.createElement("thead", null, 
-	                React.createElement("tr", null, 
-	                    React.createElement("th", null, "Name"), 
-	                    React.createElement("th", null, "Username"), 
-	                    React.createElement("th", null, "Office"), 
-	                    React.createElement("th", null, "Password"), 
-	                    React.createElement("th", null, "Gender"), 
-	                    React.createElement("th", null, "Updated")
-	                )
-	                )
-	            );
-	
-	
-	    }
-	
-	});
-	
-	
-	/**
-	 * Namespaced react component
-	 */
-	DataTable.Button = React.createClass({displayName: "DataTable.Button",
-	
-	    /**
-	     * set your prop validations
-	     *  // You can declare that a prop is a specific JS primitive. By default, these
-	     *  // are all optional.
-	     *  optionalArray: React.PropTypes.array,
-	     *  optionalBool: React.PropTypes.bool,
-	     *  optionalFunc: React.PropTypes.func,
-	     *  optionalNumber: React.PropTypes.number,
-	     *  optionalObject: React.PropTypes.object,
-	     *  optionalString: React.PropTypes.string,
-	     */
-	
-	
-	    /**
-	     * define misins
-	     */
-	    //mixins: [],
-	
-	    /**
-	     * Set the default values for your states
-	     */
-	    //getInitialState: function () {},
-	
-	    /**
-	     * det the props default
-	     */
-	    getDefaultProps: function () {
-	        return {
-	            name: 'My Button'
-	
-	        }
-	    },
-	
-	    /**
-	     *
-	     */
-	    //componentWillMount: function () {},
-	
-	    /**
-	     *
-	     */
-	    //componentWillReceiveProps: function () {},
-	
-	    /**
-	     *
-	     */
-	    //componentDidMount: function () {},
-	
-	    /**
-	     *
-	     */
-	    //componentWillUnmount: function () {},
-	
-	    render: function () {
-	        return (
-	            React.createElement("button", {className: "btn btn-default"}, 
-	                 this.props.name
-	            )
-	        );
-	    }
-	});
-	
-	
-	/**
-	 * export the element
-	 */
-	module.exports = DataTable;
 
 
 /***/ },
@@ -15229,6 +14982,186 @@ webpackJsonp([0],{
 	
 	}(window, document));
 	
+
+
+/***/ },
+
+/***/ 163:
+/*!*************************************!*\
+  !*** ./src/libs/rts-datatables.jsx ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by shawnsandy on 6/13/15.
+	 */
+	
+	/**
+	 * @jsx React.DOM
+	 */
+	
+	/**
+	 *
+	 * @type {*|exports}
+	 */
+	var React = __webpack_require__(/*! react */ 1);
+	var $ = __webpack_require__(/*! jquery */ 158);
+	var DataTable = __webpack_require__(/*! datatables */ 161);
+	/**
+	 * Briefly describe your Element here
+	 */
+	
+	var RtsDataTable = React.createClass({displayName: "RtsDataTable",
+	
+	    getDefaultProps:function(){
+	
+	        return {
+	            dataUrl: '',
+	            selector: 'table table-hover'
+	        }
+	
+	    },
+	
+	    componentDidMount:function(){
+	
+	        $.ajax({
+	            type: "GET",
+	            url: this.props.dataUrl,
+	            dataType: "json",
+	            success: function (data) {
+	                this.setState({data: data});
+	                //console.log(this.state.data)
+	            }.bind(this)
+	        });
+	        $(React.findDOMNode(this.refs.dataTable)).DataTable({});
+	    },
+	    componentWillUpdate: function () {
+	        var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
+	        table.destroy();
+	    },
+	    componentDidUpdate: function () {
+	        $(React.findDOMNode(this.refs.dataTable)).DataTable();
+	    },
+	    componentWillUnmount: function () {
+	        var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
+	        table.destroy();
+	    },
+	    getInitialState: function () {
+	        return {
+	            'data': []
+	        }
+	    },
+	
+	    render: function () {
+	
+	        var rows = this.state.data.map(function (row) {
+	            return (
+	                React.createElement("tr", {key: row.id}, 
+	                    React.createElement("td", null, row.first_name, " ", row.last_name, " "), 
+	                    React.createElement("td", null, row.username), 
+	                    React.createElement("td", null, row.password, " "), 
+	                    React.createElement("td", null, row.ssn, " "), 
+	                    React.createElement("td", null, row.gender, " "), 
+	                    React.createElement("td", null, row.updated_at, " ")
+	                )
+	            );
+	        })
+	
+	        return (
+	            React.createElement("div", null, 
+	                React.createElement("table", {id: "datatable", ref: "dataTable", className: this.props.selector}, 
+	                    React.createElement(RtsDataTable.Caption, null), 
+	                    React.createElement(RtsDataTable.Header, null), 
+	
+	                    React.createElement("tbody", null, 
+	                    rows
+	                    )
+	                )
+	            )
+	        );
+	    }
+	
+	});
+	
+	
+	RtsDataTable.Body = React.createClass({displayName: "RtsDataTable.Body",
+	    render: function () {
+	        return (
+	            React.createElement("div", null, "Table Body")
+	        )
+	    }
+	});
+	
+	
+	RtsDataTable.Caption = React.createClass({displayName: "RtsDataTable.Caption",
+	
+	    getDefaultProps:function(){
+	        return {
+	            caption: "UI DATATABLE"
+	        }
+	    },
+	
+	    render: function () {
+	        return (
+	            React.createElement("caption", null,  this.props.caption)
+	        );
+	    }
+	
+	});
+	
+	RtsDataTable.Header = React.createClass({displayName: "RtsDataTable.Header",
+	
+	    getDefaultProps:function(){
+	        return {
+	
+	            tag: 'thead',
+	            pagingType: 'full_numbers'
+	
+	        }
+	    },
+	
+	    render: function () {
+	
+	        var tag = this.props.tag;
+	
+	        if (tag == 'tfoot')
+	            return (
+	                React.createElement("tfoot", null, 
+	                React.createElement("tr", null, 
+	                    React.createElement("th", null, "Name"), 
+	                    React.createElement("th", null, "Username"), 
+	                    React.createElement("th", null, "Office"), 
+	                    React.createElement("th", null, "Password"), 
+	                    React.createElement("th", null, "Gender"), 
+	                    React.createElement("th", null, "Updated")
+	                )
+	                )
+	            );
+	        else
+	            return (
+	                React.createElement("thead", null, 
+	                React.createElement("tr", null, 
+	                    React.createElement("th", null, "Name"), 
+	                    React.createElement("th", null, "Username"), 
+	                    React.createElement("th", null, "Office"), 
+	                    React.createElement("th", null, "Password"), 
+	                    React.createElement("th", null, "Gender"), 
+	                    React.createElement("th", null, "Updated")
+	                )
+	                )
+	            );
+	
+	
+	    }
+	
+	});
+	
+	
+	
+	/**
+	 * export the element
+	 */
+	module.exports = RtsDataTable;
 
 
 /***/ }

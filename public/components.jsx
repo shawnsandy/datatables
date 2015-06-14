@@ -9,7 +9,7 @@ var React = require("react");
  * webpack compiled components sample file
  */
 
-var DataTables = require('../src/libs/datatables.jsx');
+var DataTables = require('../src/libs/rts-datatables.jsx');
 
 React.render(<DataTables dataUrl="data/users.json" />, document.getElementById('component'));
 
