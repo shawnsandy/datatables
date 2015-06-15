@@ -19,7 +19,7 @@ var DataTable = require('datatables');
 
 var RtsDataTable = React.createClass({
 
-    getDefaultProps(){
+    getDefaultProps() {
 
         return {
             dataUrl: '',
@@ -28,7 +28,7 @@ var RtsDataTable = React.createClass({
 
     },
 
-    componentDidMount(){
+    componentDidMount() {
 
         $.ajax({
             type: "GET",
@@ -60,9 +60,18 @@ var RtsDataTable = React.createClass({
 
     render: function () {
 
+        onclick = function (e) {
+            e.preventDefault();
+            //alert('Clicked');
+            console.log('clicked' + e.target.getAttribute('data-reactid'));
+
+        };
+
+
         var rows = this.state.data.map(function (row) {
             return (
-                <tr key={row.id}>
+
+                <tr  onClick={onclick} key={row.id}>
                     <td>{row.first_name} {row.last_name} </td>
                     <td>{row.username}</td>
                     <td>{row.password} </td>
@@ -85,6 +94,13 @@ var RtsDataTable = React.createClass({
                 </table>
             </div>
         );
+    },
+
+    clickrow: function (e) {
+        //e.preventDefault();
+        alert('Clicked');
+        console.log('clicked');
+
     }
 
 });
@@ -101,7 +117,7 @@ RtsDataTable.Body = React.createClass({
 
 RtsDataTable.Caption = React.createClass({
 
-    getDefaultProps(){
+    getDefaultProps() {
         return {
             caption: "UI DATATABLE"
         }
@@ -117,7 +133,7 @@ RtsDataTable.Caption = React.createClass({
 
 RtsDataTable.Header = React.createClass({
 
-    getDefaultProps(){
+    getDefaultProps() {
         return {
 
             tag: 'thead',
@@ -133,27 +149,27 @@ RtsDataTable.Header = React.createClass({
         if (tag == 'tfoot')
             return (
                 <tfoot>
-                <tr>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Office</th>
-                    <th>Password</th>
-                    <th>Gender</th>
-                    <th>Updated</th>
-                </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Office</th>
+                        <th>Password</th>
+                        <th>Gender</th>
+                        <th>Updated</th>
+                    </tr>
                 </tfoot>
             );
         else
             return (
                 <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Office</th>
-                    <th>Password</th>
-                    <th>Gender</th>
-                    <th>Updated</th>
-                </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Office</th>
+                        <th>Password</th>
+                        <th>Gender</th>
+                        <th>Updated</th>
+                    </tr>
                 </thead>
             );
 
@@ -161,7 +177,6 @@ RtsDataTable.Header = React.createClass({
     }
 
 });
-
 
 
 /**
