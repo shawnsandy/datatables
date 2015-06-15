@@ -15013,7 +15013,7 @@ webpackJsonp([0],{
 	
 	var RtsDataTable = React.createClass({displayName: "RtsDataTable",
 	
-	    getDefaultProps:function(){
+	    getDefaultProps:function() {
 	
 	        return {
 	            dataUrl: '',
@@ -15022,7 +15022,7 @@ webpackJsonp([0],{
 	
 	    },
 	
-	    componentDidMount:function(){
+	    componentDidMount:function() {
 	
 	        $.ajax({
 	            type: "GET",
@@ -15030,7 +15030,7 @@ webpackJsonp([0],{
 	            dataType: "json",
 	            success: function (data) {
 	                this.setState({data: data});
-	                //console.log(this.state.data)
+	                console.log(this.state.data[0])
 	            }.bind(this)
 	        });
 	        $(React.findDOMNode(this.refs.dataTable)).DataTable({});
@@ -15054,9 +15054,18 @@ webpackJsonp([0],{
 	
 	    render: function () {
 	
+	        onclick = function (e) {
+	            e.preventDefault();
+	            //alert('Clicked');
+	            console.log('clicked' + e.target.getAttribute('data-reactid'));
+	
+	        };
+	
+	
 	        var rows = this.state.data.map(function (row) {
 	            return (
-	                React.createElement("tr", {key: row.id}, 
+	
+	                React.createElement("tr", {onClick: onclick, key: row.id}, 
 	                    React.createElement("td", null, row.first_name, " ", row.last_name, " "), 
 	                    React.createElement("td", null, row.username), 
 	                    React.createElement("td", null, row.password, " "), 
@@ -15079,6 +15088,13 @@ webpackJsonp([0],{
 	                )
 	            )
 	        );
+	    },
+	
+	    clickrow: function (e) {
+	        //e.preventDefault();
+	        alert('Clicked');
+	        console.log('clicked');
+	
 	    }
 	
 	});
@@ -15095,7 +15111,7 @@ webpackJsonp([0],{
 	
 	RtsDataTable.Caption = React.createClass({displayName: "RtsDataTable.Caption",
 	
-	    getDefaultProps:function(){
+	    getDefaultProps:function() {
 	        return {
 	            caption: "UI DATATABLE"
 	        }
@@ -15111,7 +15127,7 @@ webpackJsonp([0],{
 	
 	RtsDataTable.Header = React.createClass({displayName: "RtsDataTable.Header",
 	
-	    getDefaultProps:function(){
+	    getDefaultProps:function() {
 	        return {
 	
 	            tag: 'thead',
@@ -15127,27 +15143,27 @@ webpackJsonp([0],{
 	        if (tag == 'tfoot')
 	            return (
 	                React.createElement("tfoot", null, 
-	                React.createElement("tr", null, 
-	                    React.createElement("th", null, "Name"), 
-	                    React.createElement("th", null, "Username"), 
-	                    React.createElement("th", null, "Office"), 
-	                    React.createElement("th", null, "Password"), 
-	                    React.createElement("th", null, "Gender"), 
-	                    React.createElement("th", null, "Updated")
-	                )
+	                    React.createElement("tr", null, 
+	                        React.createElement("th", null, "Name"), 
+	                        React.createElement("th", null, "Username"), 
+	                        React.createElement("th", null, "Office"), 
+	                        React.createElement("th", null, "Password"), 
+	                        React.createElement("th", null, "Gender"), 
+	                        React.createElement("th", null, "Updated")
+	                    )
 	                )
 	            );
 	        else
 	            return (
 	                React.createElement("thead", null, 
-	                React.createElement("tr", null, 
-	                    React.createElement("th", null, "Name"), 
-	                    React.createElement("th", null, "Username"), 
-	                    React.createElement("th", null, "Office"), 
-	                    React.createElement("th", null, "Password"), 
-	                    React.createElement("th", null, "Gender"), 
-	                    React.createElement("th", null, "Updated")
-	                )
+	                    React.createElement("tr", null, 
+	                        React.createElement("th", null, "Name"), 
+	                        React.createElement("th", null, "Username"), 
+	                        React.createElement("th", null, "Office"), 
+	                        React.createElement("th", null, "Password"), 
+	                        React.createElement("th", null, "Gender"), 
+	                        React.createElement("th", null, "Updated")
+	                    )
 	                )
 	            );
 	
@@ -15155,7 +15171,6 @@ webpackJsonp([0],{
 	    }
 	
 	});
-	
 	
 	
 	/**
