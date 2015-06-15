@@ -36,7 +36,7 @@ var RtsDataTable = React.createClass({
             dataType: "json",
             success: function (data) {
                 this.setState({data: data});
-                //console.log(this.state.data)
+                console.log(this.state.data[0])
             }.bind(this)
         });
         $(React.findDOMNode(this.refs.dataTable)).DataTable({});
