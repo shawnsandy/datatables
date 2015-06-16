@@ -61,17 +61,17 @@ var RtsDataTable = React.createClass({
     render: function () {
 
         onclick = function (e) {
-            e.preventDefault();
-            //alert('Clicked');
-            console.log('clicked' + e.target.getAttribute('data-reactid'));
-
+           e.preventDefault();
+            //console.log('clicked ' + e.target.getAttribute('data-reactid'));
+           // console.log($(e.target).find('id').toString());
+           // console.log(React.findDOMNode(e.target.refs.id));
         };
 
 
         var rows = this.state.data.map(function (row) {
             return (
 
-                <tr  onClick={onclick} key={row.id}>
+                <tr ref="id" id={row.id}  onClick={onclick} key={row.id}>
                     <td>{row.first_name} {row.last_name} </td>
                     <td>{row.username}</td>
                     <td>{row.password} </td>
