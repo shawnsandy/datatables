@@ -20,7 +20,7 @@ var DataTable = require('datatables');
 var RtsDataTable = React.createClass({
 
     propTypes: {
-      cols: React.PropTypes.array.isRequired,
+        cols: React.PropTypes.array.isRequired,
         dataUrl: React.PropTypes.string.isRequired
     },
 
@@ -42,21 +42,21 @@ var RtsDataTable = React.createClass({
             dataType: "json",
             success: function (data) {
                 this.setState({data: data});
-                console.log(this.state.data[0])
+                //console.log(this.state.data[0])
             }.bind(this)
         });
-        $(React.findDOMNode(this.refs.dataTable)).DataTable({});
+        //$(React.findDOMNode(this.refs.dataTable)).DataTable({});
     },
     componentWillUpdate: function () {
-        var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
-        table.destroy();
+        //var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
+        //table.destroy();
     },
     componentDidUpdate: function () {
-        $(React.findDOMNode(this.refs.dataTable)).DataTable();
+        //$(React.findDOMNode(this.refs.dataTable)).DataTable();
     },
     componentWillUnmount: function () {
-        var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
-        table.destroy();
+        //var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
+        //table.destroy();
     },
     getInitialState: function () {
         return {
@@ -66,29 +66,21 @@ var RtsDataTable = React.createClass({
 
     render: function () {
 
+        var tr = this.state.data;
+        console.log(tr[0]);
+        var rows = tr.map(function (row, key) {
 
+          return(
+                  <p key={key}>something</p>
+              )
 
-        var rows = this.state.data.map(function (row) {
-
-            return (
-
-                <tr ref="id" id={row.id} key={row.id}>
-                    <td>{row.first_name} {row.last_name} </td>
-                    <td>{row.username}</td>
-                    <td>{row.password} </td>
-                    <td>{row.ssn} </td>
-                    <td>{row.gender} </td>
-                    <td>{row.updated_at} </td>
-                </tr>
-
-            );
-        })
+        });
 
         return (
             <div>
                 <table id="datatable" ref="dataTable" className={this.props.selector}>
                     <RtsDataTable.Caption />
-                    <RtsDataTable.Header />
+                    <RtsDataTable.Header cols={this.props.cols } />
 
                     <tbody>
                     {rows}
@@ -101,21 +93,11 @@ var RtsDataTable = React.createClass({
 
 });
 
-
-RtsDataTable.Body = React.createClass({
-    render: function () {
-        return (
-            <div>Table Body</div>
-        )
-    }
-});
-
-
 RtsDataTable.Caption = React.createClass({
 
     getDefaultProps() {
         return {
-            caption: "UI DATATABLE"
+            caption: ""
         }
     },
 
@@ -132,115 +114,56 @@ RtsDataTable.Header = React.createClass({
     getDefaultProps() {
         return {
 
-            tag: 'thead',
-            pagingType: 'full_numbers',
-            cols: ""
+            cols: []
 
         }
     },
 
     render: function () {
 
-        var tag = this.props.tag;
+        var cols = this.props.cols;
+        var header = cols.map(function (names, key) {
 
-        if (tag == 'tfoot')
             return (
-                <tfoot>
-                <tr>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Office</th>
-                    <th>Password</th>
-                    <th>Gender</th>
-                    <th>Updated</th>
-                </tr>
-                </tfoot>
-            );
-        else
-            return (
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Office</th>
-                    <th>Password</th>
-                    <th>Gender</th>
-                    <th>Updated</th>
-                </tr>
-                </thead>
-            );
-
-
-    }
-
-});
-
-RtsDataTable.Rows = React.createClass({
-
-    propTypes: {},
-    getDefaultProps(){
-        return {
-
-            class: "",
-            data: "Table Data..."
-
-        }
-    },
-    render: function () {
-
-        return (
-            <tr>
-                <td className={this.props.class}>
-                    {this.props.data}
-                </td>
-            </tr>
-        )
-
-    }
-
-});
-
-
-RtsDataTable.Data = React.createClass({
-
-    getDefaultProps(){
-        return {
-            class: "",
-            data: "Table Data..."
-        }
-    },
-    render: function () {
-
-        return (
-            <td className={this.props.class}>
-                {this.props.data}
-            </td>
-        );
-
-    }
-
-});
-
-RtsDataTable.Head = React.createClass({
-
-    getDefaultProps(){
-        return {
-            cols: {}
-        }
-    },
-    render: function () {
-
-        var columns = this.props.cols.foreach(function (col) {
-            return (
-                <RtsDataTable.data class={cols} data="cols"/>
+                <th key={key}>
+                    {names}
+                </th>
             );
         });
 
         return (
             <thead>
-            {columns}
+            <tr>
+                {header}
+            </tr>
             </thead>
         );
+    }
+
+
+});
+
+RtsDataTable.Rows = React.createClass({
+
+    propTypes: {
+        data: React.PropTypes.array
+    },
+
+    render: function () {
+
+        var rows = this.props.data.map(function (row, key) {
+            return (
+                <td className={key} key={key}>
+                    {row}
+                </td>
+            )
+        });
+
+        return (
+            <tr>
+                {rows}
+            </tr>
+        )
 
     }
 

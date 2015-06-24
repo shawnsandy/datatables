@@ -11,5 +11,7 @@ var React = require("react");
 
 var DataTables = require('../src/libs/rts-datatables.jsx');
 
-React.render(<DataTables dataUrl="data/users.json" />, document.getElementById('component'));
+var cols = ['id','first_name','last_name'];
+
+React.render(<DataTables dataUrl="data/users.json" cols={cols} />, document.getElementById('component'));
 
