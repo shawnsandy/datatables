@@ -30,7 +30,8 @@ var RtsDataTable = React.createClass({
         return {
             dataUrl: '',
             selector: 'table table-hover',
-            cols: []
+            cols: [],
+            colTables: []
         }
 
     },
@@ -69,11 +70,11 @@ var RtsDataTable = React.createClass({
 
         var tr = this.state.data;
         //console.log(tr[0]);
-        var cols = this.props.cols;
+        var cols = this.props.colTables;
         var rows = tr.map(function (row, key) {
           //  console.log(key);
           return(
-                  <RtsDataTable.Rows key={key} data={row} cols={cols} />
+                  <RtsDataTable.Rows key={key} data={row} colsTables={cols} />
 
               )
 
@@ -99,13 +100,15 @@ var RtsDataTable = React.createClass({
 RtsDataTable.Rows = React.createClass({
 
     propTypes: {
-        data: React.PropTypes.object,
+        data: React.PropTypes.object.isRequired,
+        colsTables: React.PropTypes.array.isRequired
 
     },
 
     getDefaultProps(){
         return {
-            cols: ['id','first_name']
+
+           colsTables: []
         }
     },
 
@@ -114,8 +117,8 @@ RtsDataTable.Rows = React.createClass({
 
         var data = this.props.data;
        //
-        var rows = this.props.cols.map(function(d,k){
-            console.log(d);
+        var rows = this.props.colsTables.map(function(d,k){
+            //console.log(d);
             return (
             <td key={k}>
                {data[d]}
@@ -133,29 +136,12 @@ RtsDataTable.Rows = React.createClass({
 
 });
 
-
-RtsDataTable.Caption = React.createClass({
-
-    getDefaultProps() {
-        return {
-            caption: ""
-        }
-    },
-
-    render: function () {
-        return (
-            <caption>{ this.props.caption }</caption>
-        );
-    }
-
-});
-
 RtsDataTable.Header = React.createClass({
 
     getDefaultProps() {
         return {
 
-            cols: []
+            cols: ['Id','First Name', 'Last Name'],
 
         }
     },
@@ -183,6 +169,27 @@ RtsDataTable.Header = React.createClass({
 
 
 });
+
+/**
+ *
+ */
+RtsDataTable.Caption = React.createClass({
+
+    getDefaultProps() {
+        return {
+            caption: ""
+        }
+    },
+
+    render: function () {
+        return (
+            <caption>{ this.props.caption }</caption>
+        );
+    }
+
+});
+
+
 
 
 /**
