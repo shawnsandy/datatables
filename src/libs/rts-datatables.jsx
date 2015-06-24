@@ -67,11 +67,13 @@ var RtsDataTable = React.createClass({
     render: function () {
 
         var tr = this.state.data;
-        console.log(tr[0]);
+        //console.log(tr[0]);
         var rows = tr.map(function (row, key) {
+          //  console.log(key);
 
           return(
-                  <p key={key}>something</p>
+                  <RtsDataTable.Rows key={key} data={row} />
+
               )
 
         });
@@ -92,6 +94,45 @@ var RtsDataTable = React.createClass({
 
 
 });
+
+
+RtsDataTable.Rows = React.createClass({
+
+    propTypes: {
+        data: React.PropTypes.object,
+
+    },
+
+    getDefaultProps(){
+        return {
+            cols: ['id','first_name']
+        }
+    },
+
+    render: function () {
+
+
+        var data = this.props.data;
+       //
+        var rows = this.props.cols.map(function(d,k){
+            console.log(d);
+            return (
+            <p key={k}>
+               {data[d]}
+            </p>
+                );
+
+        })
+        return(
+            <div>
+                {rows}
+            </div>
+        )
+
+    }
+
+});
+
 
 RtsDataTable.Caption = React.createClass({
 
@@ -140,32 +181,6 @@ RtsDataTable.Header = React.createClass({
         );
     }
 
-
-});
-
-RtsDataTable.Rows = React.createClass({
-
-    propTypes: {
-        data: React.PropTypes.array
-    },
-
-    render: function () {
-
-        var rows = this.props.data.map(function (row, key) {
-            return (
-                <td className={key} key={key}>
-                    {row}
-                </td>
-            )
-        });
-
-        return (
-            <tr>
-                {rows}
-            </tr>
-        )
-
-    }
 
 });
 
