@@ -1,0 +1,9 @@
+node_modules
+.idea
+.git
+src
+src/apps
+packages
+public
+test.js
+_test

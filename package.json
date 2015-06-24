@@ -22,7 +22,9 @@
     "url": "https://github.com/foluke-ui-kit/start-react.git"
   },
   "keywords": [
-    "react"
+    "react",
+    "tables",
+    "react-components"
   ],
   "author": "shawn sandy",
   "license": "MIT",

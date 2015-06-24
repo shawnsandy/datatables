@@ -1,15 +1,6 @@
-#NAME
-No project should be without a readme, use this one as a boilerplate for creating your own README.md
+ReactDataTables
+A simple and easy to use Sortable table component built with [jQuery Datables](http://datables.net), it was built as a simple easy to use option that can be quickly customized.
 
-__Features:__
-
-* ...
-
-Required
-
-NodeJS - Download/Install
-Bower more info - install npm install -g bower
-Browser sync more info - install npm install -g browser-sync
 
 ### Quick Start
 ----------------
@@ -38,7 +29,8 @@ __0.0.1__
 
 ### TODO
 
-- Customizing configurations
+- Add error checking
+- Datables options
 - ...
 
 ### License
