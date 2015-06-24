@@ -21,9 +21,19 @@ Fork the REPO and send a push request, you know the drill...
 
 ### History
 
+__0.1.0__
+
+Beta release
+- Refactored the component(s)
+- Updated the README
+- Propotypes / Validation
+  - cols : //table cols
+  - colTables: // the table names for cols
+  - dataUrl : // url of your json data
+
 __0.0.1__
 
-- Public release
+- Development started
 
 
 ### TODO

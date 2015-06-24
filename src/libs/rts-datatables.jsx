@@ -21,6 +21,7 @@ var RtsDataTable = React.createClass({
 
     propTypes: {
         cols: React.PropTypes.array.isRequired,
+        colTables: React.PropTypes.array.isRequired,
         dataUrl: React.PropTypes.string.isRequired
     },
 
