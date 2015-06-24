@@ -45,18 +45,18 @@ var RtsDataTable = React.createClass({
                 //console.log(this.state.data[0])
             }.bind(this)
         });
-        //$(React.findDOMNode(this.refs.dataTable)).DataTable({});
+        $(React.findDOMNode(this.refs.dataTable)).DataTable({});
     },
     componentWillUpdate: function () {
-        //var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
-        //table.destroy();
+        var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
+        table.destroy();
     },
     componentDidUpdate: function () {
-        //$(React.findDOMNode(this.refs.dataTable)).DataTable();
+        $(React.findDOMNode(this.refs.dataTable)).DataTable();
     },
     componentWillUnmount: function () {
-        //var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
-        //table.destroy();
+        var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
+        table.destroy();
     },
     getInitialState: function () {
         return {
@@ -68,11 +68,11 @@ var RtsDataTable = React.createClass({
 
         var tr = this.state.data;
         //console.log(tr[0]);
+        var cols = this.props.cols;
         var rows = tr.map(function (row, key) {
           //  console.log(key);
-
           return(
-                  <RtsDataTable.Rows key={key} data={row} />
+                  <RtsDataTable.Rows key={key} data={row} cols={cols} />
 
               )
 
@@ -83,7 +83,6 @@ var RtsDataTable = React.createClass({
                 <table id="datatable" ref="dataTable" className={this.props.selector}>
                     <RtsDataTable.Caption />
                     <RtsDataTable.Header cols={this.props.cols } />
-
                     <tbody>
                     {rows}
                     </tbody>
@@ -117,16 +116,16 @@ RtsDataTable.Rows = React.createClass({
         var rows = this.props.cols.map(function(d,k){
             console.log(d);
             return (
-            <p key={k}>
+            <td key={k}>
                {data[d]}
-            </p>
+            </td>
                 );
 
         })
         return(
-            <div>
+            <tr>
                 {rows}
-            </div>
+            </tr>
         )
 
     }
