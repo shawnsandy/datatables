@@ -19,154 +19,151 @@ var DataTable = require('datatables');
 
 var RtsDataTable = React.createClass({
 
-    propTypes: {
-        cols: React.PropTypes.array.isRequired,
-        colTables: React.PropTypes.array.isRequired,
-        dataUrl: React.PropTypes.string.isRequired
-    },
+  propTypes: {
+    cols: React.PropTypes.array.isRequired,
+    colTables: React.PropTypes.array.isRequired,
+    dataUrl: React.PropTypes.string.isRequired
+  },
 
-    getDefaultProps() {
+  getDefaultProps() {
 
-        return {
-            dataUrl: '',
-            selector: 'table table-hover',
-            cols: [],
-            colTables: []
-        }
-
-    },
-
-    componentDidMount() {
-
-        $.ajax({
-            type: "GET",
-            url: this.props.dataUrl,
-            dataType: "json",
-            success: function (data) {
-                this.setState({data: data});
-                //console.log(this.state.data[0])
-            }.bind(this)
-        });
-        $(React.findDOMNode(this.refs.dataTable)).DataTable({});
-    },
-    componentWillUpdate: function () {
-        var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
-        table.destroy();
-    },
-    componentDidUpdate: function () {
-        $(React.findDOMNode(this.refs.dataTable)).DataTable();
-    },
-    componentWillUnmount: function () {
-        var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
-        table.destroy();
-    },
-    getInitialState: function () {
-        return {
-            'data': []
-        }
-    },
-
-    render: function () {
-
-        var tr = this.state.data;
-        //console.log(tr[0]);
-        var cols = this.props.colTables;
-        var rows = tr.map(function (row, key) {
-          //  console.log(key);
-          return(
-                  <RtsDataTable.Rows key={key} data={row} colsTables={cols} />
-
-              )
-
-        });
-
-        return (
-            <div>
-                <table id="datatable" ref="dataTable" className={this.props.selector}>
-                    <RtsDataTable.Caption />
-                    <RtsDataTable.Header cols={this.props.cols } />
-                    <tbody>
-                    {rows}
-                    </tbody>
-                </table>
-            </div>
-        );
+    return {
+      dataUrl: '',
+      selector: 'table table-hover',
+      cols: [],
+      colTables: [],
+      tableCaption: ''
     }
+  },
 
+  componentDidMount() {
+
+    $.ajax({
+      type: "GET",
+      url: this.props.dataUrl,
+      dataType: "json",
+      success: function(data) {
+        this.setState({
+          data: data
+        });
+//console.log(this.state.data[0])
+      }.bind(this)
+    });
+    $(React.findDOMNode(this.refs.dataTable)).DataTable({});
+  },
+  componentWillUpdate: function() {
+    var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
+    table.destroy();
+  },
+  componentDidUpdate: function() {
+    $(React.findDOMNode(this.refs.dataTable)).DataTable();
+  },
+  componentWillUnmount: function() {
+    var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
+    table.destroy();
+  },
+  getInitialState: function() {
+    return {
+      'data': []
+    }
+  },
+
+  render: function() {
+
+    var tr = this.state.data;
+//console.log(tr[0]);
+    var cols = this.props.colTables;
+    var rows = tr.map(function(row, key) {
+//  console.log(key);
+      return (
+        <RtsDataTable.Rows colsTables={cols} data={row} key={key}/>
+
+      )
+    });
+
+    return (
+      <div>
+        <table className={this.props.selector} id="datatable" ref="dataTable">
+          <RtsDataTable.Caption caption={this.props.tableCaption}/>
+          <RtsDataTable.Header cols={this.props.cols }/>
+          <tbody>
+            {rows}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
 
 });
 
-
 RtsDataTable.Rows = React.createClass({
 
-    propTypes: {
-        data: React.PropTypes.object.isRequired,
-        colsTables: React.PropTypes.array.isRequired
+  propTypes: {
+    data: React.PropTypes.object.isRequired,
+    colsTables: React.PropTypes.array.isRequired
 
-    },
+  },
 
-    getDefaultProps(){
-        return {
+  getDefaultProps() {
+    return {
 
-           colsTables: []
-        }
-    },
-
-    render: function () {
-
-
-        var data = this.props.data;
-       //
-        var rows = this.props.colsTables.map(function(d,k){
-            //console.log(d);
-            return (
-            <td key={k}>
-               {data[d]}
-            </td>
-                );
-
-        })
-        return(
-            <tr>
-                {rows}
-            </tr>
-        )
-
+      colsTables: []
     }
+  },
+
+  render: function() {
+
+    var data = this.props.data;
+//
+    var rows = this.props.colsTables.map(function(d, k) {
+//console.log(d);
+      return (
+        <td key={k}>
+          {data[d]}
+        </td>
+      );
+
+    })
+    return (
+      <tr>
+        {rows}
+      </tr>
+    )
+  }
 
 });
 
 RtsDataTable.Header = React.createClass({
 
-    getDefaultProps() {
-        return {
+  getDefaultProps() {
+    return {
 
-            cols: ['Id','First Name', 'Last Name'],
-
-        }
-    },
-
-    render: function () {
-
-        var cols = this.props.cols;
-        var header = cols.map(function (names, key) {
-
-            return (
-                <th key={key}>
-                    {names}
-                </th>
-            );
-        });
-
-        return (
-            <thead>
-            <tr>
-                {header}
-            </tr>
-            </thead>
-        );
+      cols: [
+        'Id', 'First Name', 'Last Name'
+      ]
     }
+  },
 
+  render: function() {
+
+    var cols = this.props.cols;
+    var header = cols.map(function(names, key) {
+
+      return (
+        <th key={key}>
+          {names}
+        </th>
+      );
+    });
+
+    return (
+      <thead>
+        <tr>
+          {header}
+        </tr>
+      </thead>
+    );
+  }
 
 });
 
@@ -175,22 +172,19 @@ RtsDataTable.Header = React.createClass({
  */
 RtsDataTable.Caption = React.createClass({
 
-    getDefaultProps() {
-        return {
-            caption: ""
-        }
-    },
-
-    render: function () {
-        return (
-            <caption>{ this.props.caption }</caption>
-        );
+  getDefaultProps() {
+    return {
+      caption: ""
     }
+  },
+
+  render: function() {
+    return (
+      <caption>{ this.props.caption }</caption>
+    );
+  }
 
 });
-
-
-
 
 /**
  * export the element

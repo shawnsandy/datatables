@@ -1,12 +1,14 @@
 ReactDataTables
-A simple and easy to use Sortable table component built with [jQuery Datables](http://datables.net), it was built as a simple easy to use option that can be quickly customized.
+A simple and easy to use Sortable table component built with [jQuery Datables](http://datatables.net), it was built as a simple easy to use option that can be quickly customized.
 
 
 ### Quick Start
 ----------------
+
+__Via NPM__
  - `npm i @shawnsandy/react-table-sets`
 
- __Usage__
+
 
  ```js
 
@@ -17,7 +19,13 @@ A simple and easy to use Sortable table component built with [jQuery Datables](h
  var colsTables = ['id','first_name','last_name'];
 
  React.render(<DataTables dataUrl="data/users.json" cols={cols} colTables={colsTables} />, document.getElementById('component'));
+
  ```
+
+ __GitHub Download__
+
+ - Download the [latest release here (zip/tarball)](https://github.com/shawnsandy/datatables/releases)
+
 
 ### Contribute
 
@@ -25,11 +33,17 @@ Fork the REPO and send a push request, you know the drill...
 
 ### History
 
+__0.2.0__
+
+- Updated Readme, fixed Typos
+- added tableCaption prop
+- Removed webpack from NPM (run) scripts
+
 __0.1.0__
 
 Beta release
-- Refactored the component(s)
-- Updated the README
+- Refactored the component(s) structure
+- Added props cols / colTables
 - Propotypes / Validation
   - cols : //table cols
   - colTables: // the table names for cols
@@ -43,8 +57,8 @@ __0.0.1__
 ### TODO
 
 - Add error checking
-- Datables options
-- ...
+- DataTables options
+- Add better styling options / props
 
 ### License
 

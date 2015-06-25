@@ -1,5 +1,5 @@
 {
-  "name": "@shawnsandy/react-table-sets",
+  "name": "@shawnsandy/rts-datatables",
   "version": "0.1.0",
   "description": "React plugins for displaying data using tables",
   "main": "app/main.js",
@@ -8,7 +8,6 @@
     "preinstall": "npm -v && bower -v",
     "preversion": "npm run build",
     "development": "webpack -d --watch & browser-sync start --config bs-config.js ",
-    "webpack": "webpack -p",
     "git-commit": "git add -A . && git commit -a -m 'Release package'",
     "git-push": "git push origin develop",
     "build": "rm -r app/* && webpack -p",
