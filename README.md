@@ -1,19 +1,29 @@
-#NAME
-No project should be without a readme, use this one as a boilerplate for creating your own README.md
+ReactDataTables
+A simple and easy to use Sortable table component built with [jQuery Datables](http://datatables.net), it was built as a simple easy to use option that can be quickly customized.
 
-__Features:__
-
-* ...
-
-Required
-
-NodeJS - Download/Install
-Bower more info - install npm install -g bower
-Browser sync more info - install npm install -g browser-sync
 
 ### Quick Start
 ----------------
-To find out how to use the Start-React boilerplate [head over to the Start-React.md  readme](/STARTHERE.md)
+
+__Via NPM__
+ - `npm i @shawnsandy/rts-datatables`
+
+ ```js
+
+ var React = require("react");
+ var DataTables = require('rts-datatables');
+
+ var cols = ['ID','First Name','Last Name'];
+ var colsTables = ['id','first_name','last_name'];
+
+ React.render(<DataTables dataUrl="data/users.json" cols={cols} colTables={colsTables} />, document.getElementById('component'));
+
+ ```
+
+ __GitHub Download__
+
+ - Download the [latest release here (zip/tarball)](https://github.com/shawnsandy/datatables/releases)
+
 
 ### Contribute
 
@@ -21,15 +31,32 @@ Fork the REPO and send a push request, you know the drill...
 
 ### History
 
+__0.2.0__
+
+- Updated Readme, fixed Typos
+- added tableCaption prop
+- Removed webpack from NPM (run) scripts
+
+__0.1.0__
+
+Beta release
+- Refactored the component(s) structure
+- Added props cols / colTables
+- Propotypes / Validation
+  - cols : //table cols
+  - colTables: // the table names for cols
+  - dataUrl : // url of your json data
+
 __0.0.1__
 
-- Public release
+- Development started
 
 
 ### TODO
 
-- Customizing configurations
-- ...
+- Add error checking
+- DataTables options
+- Add better styling options / props
 
 ### License
 
