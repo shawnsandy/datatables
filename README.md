@@ -6,14 +6,12 @@ A simple and easy to use Sortable table component built with [jQuery Datables](h
 ----------------
 
 __Via NPM__
- - `npm i @shawnsandy/react-table-sets`
-
-
+ - `npm i @shawnsandy/rts-datatables`
 
  ```js
 
  var React = require("react");
- var DataTables = require('react-table-sets');
+ var DataTables = require('rts-datatables');
 
  var cols = ['ID','First Name','Last Name'];
  var colsTables = ['id','first_name','last_name'];
