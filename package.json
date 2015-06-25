@@ -1,5 +1,5 @@
 {
-  "name": "@shawnsandy/react-table-sets",
+  "name": "react-table-sets",
   "version": "0.0.3",
   "description": "React plugins for displaying data using tables",
   "main": "app/main.js",
