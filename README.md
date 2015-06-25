@@ -4,7 +4,20 @@ A simple and easy to use Sortable table component built with [jQuery Datables](h
 
 ### Quick Start
 ----------------
-To find out how to use the Start-React boilerplate [head over to the Start-React.md  readme](/STARTHERE.md)
+ - `npm i @shawnsandy/react-table-sets`
+
+ __Usage__
+
+ ```js
+
+ var React = require("react");
+ var DataTables = require('react-table-sets');
+
+ var cols = ['ID','First Name','Last Name'];
+ var colsTables = ['id','first_name','last_name'];
+
+ React.render(<DataTables dataUrl="data/users.json" cols={cols} colTables={colsTables} />, document.getElementById('component'));
+ ```
 
 ### Contribute
 
