@@ -25,9 +25,13 @@ __Via GitHub Download__
  - Download the [latest release herepete (zip/tarball)](https://github.com/shawnsandy/datatables/releases)
 
 
-### Contribute
+ ### Contribute
 
-Fork the REPO and send a push request, you know the drill...
+ 1. [Submit an issue](https://github.com/AdeleD/react-paginate/issues)
+ 2. Fork the repository
+ 3. Create a dedicated branch (never ever work in `master`)
+ 4. Fix bugs or implement features
+ 5. Always write tests
 
 ### History
 
