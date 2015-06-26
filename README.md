@@ -20,9 +20,9 @@ __Via NPM__
 
  ```
 
- __GitHub Download__
+__Via GitHub Download__
 
- - Download the [latest release here (zip/tarball)](https://github.com/shawnsandy/datatables/releases)
+ - Download the [latest release herepete (zip/tarball)](https://github.com/shawnsandy/datatables/releases)
 
 
 ### Contribute
