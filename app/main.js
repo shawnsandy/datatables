@@ -1,1 +1,0 @@
-webpackJsonp([3],[function(e,t,n){var r=n(59),o=["ID","First Name","Last Name"],a=["id","first_name","last_name"];r.render(r.createElement(DataTables,{dataUrl:"data/users.json",cols:o,colTables:a}),document.getElementById("component"))}]);
