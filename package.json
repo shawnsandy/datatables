@@ -1,6 +1,6 @@
 {
   "name": "@shawnsandy/rts-datatables",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "React plugins for displaying data using tables",
   "main": "app/main.js",
   "scripts": {
