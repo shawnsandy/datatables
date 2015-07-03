@@ -11,7 +11,7 @@ var commonsPlugin = new webpack.optimize.CommonsChunkPlugin({
 
 module.exports = {
     entry: {
-        index: './src/libs/rts-datatables',
+        index: './public/components.jsx',
         vendors: ['react','jquery']
     },
     output: {
