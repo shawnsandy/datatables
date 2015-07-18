@@ -5,14 +5,14 @@
 var webpack = require('webpack');
 
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin({
-    filename: 'libs.js',
+    filename: 'app.js',
     minChunks: 2
 });
 
 module.exports = {
     entry: {
-        index: './public/components.jsx',
-        vendors: ['react','jquery']
+        bundle: './public/components.jsx',
+        //vendors: ['react','jquery']
     },
     output: {
         path: './app/',
@@ -21,7 +21,7 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /\.jsx$/, loader: 'jsx-loader?harmony' },
+            { test: /\.jsx$/, loader: 'babel-loader'},
             { test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
             { test: /\.css$/, loader: 'style-loader!css-loader'},
             { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}

@@ -16,14 +16,14 @@
 
 import React from 'react';
 import $ from 'jquery';
-import DataTable from 'datatables';
 
 
 /**
  * Briefly describe your Element here
  */
 
-var RtsDataTable = React.createClass({
+var RcTable = React.createClass({
+
 
   propTypes: {
     cols: React.PropTypes.array.isRequired,
@@ -49,25 +49,16 @@ var RtsDataTable = React.createClass({
       url: this.props.dataUrl,
       dataType: "json",
       success: function(data) {
+
+
         this.setState({
           data: data
         });
 //console.log(this.state.data[0])
       }.bind(this)
     });
-    $(React.findDOMNode(this.refs.dataTable)).DataTable({});
   },
-  componentWillUpdate: function() {
-    var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
-    table.destroy();
-  },
-  componentDidUpdate: function() {
-    $(React.findDOMNode(this.refs.dataTable)).DataTable();
-  },
-  componentWillUnmount: function() {
-    var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
-    table.destroy();
-  },
+
   getInitialState: function() {
     return {
       'data': []
@@ -82,7 +73,7 @@ var RtsDataTable = React.createClass({
     var rows = tr.map(function(row, key) {
 //  console.log(key);
       return (
-        <RtsDataTable.Rows colsTables={cols} data={row} key={key}/>
+        <RcTable.Rows colsTables={cols} data={row} key={key}/>
 
       )
     });
@@ -90,8 +81,8 @@ var RtsDataTable = React.createClass({
     return (
       <div>
         <table className={this.props.selector} id="datatable" ref="dataTable">
-          <RtsDataTable.Caption caption={this.props.tableCaption}/>
-          <RtsDataTable.Header cols={this.props.cols }/>
+          <RcTable.Caption caption={this.props.tableCaption}/>
+          <RcTable.Header cols={this.props.cols }/>
           <tbody>
             {rows}
           </tbody>
@@ -102,7 +93,7 @@ var RtsDataTable = React.createClass({
 
 });
 
-RtsDataTable.Rows = React.createClass({
+RcTable.Rows = React.createClass({
 
   propTypes: {
     data: React.PropTypes.object.isRequired,
@@ -139,7 +130,7 @@ RtsDataTable.Rows = React.createClass({
 
 });
 
-RtsDataTable.Header = React.createClass({
+RcTable.Header = React.createClass({
 
   getDefaultProps() {
     return {
@@ -176,7 +167,7 @@ RtsDataTable.Header = React.createClass({
 /**
  *
  */
-RtsDataTable.Caption = React.createClass({
+RcTable.Caption = React.createClass({
 
   getDefaultProps() {
     return {
@@ -195,5 +186,5 @@ RtsDataTable.Caption = React.createClass({
 /**
  * export the element
  */
-//module.exports = RtsDataTable;
-export default RtsDataTable;
+//module.exports = RcTable;
+export default RcTable;
