@@ -15,8 +15,6 @@
 //var DataTable = require('datatables');
 
 import React from 'react';
-import $ from 'jquery';
-
 
 /**
  * Briefly describe your Element here
@@ -28,13 +26,13 @@ var RcTable = React.createClass({
   propTypes: {
     cols: React.PropTypes.array.isRequired,
     colTables: React.PropTypes.array.isRequired,
-    dataUrl: React.PropTypes.string.isRequired
+    data: React.PropTypes.array.isRequired
   },
 
   getDefaultProps() {
 
     return {
-      dataUrl: '',
+      data: [],
       selector: 'table table-hover',
       cols: [],
       colTables: [],
@@ -44,19 +42,9 @@ var RcTable = React.createClass({
 
   componentDidMount() {
 
-    $.ajax({
-      type: "GET",
-      url: this.props.dataUrl,
-      dataType: "json",
-      success: function(data) {
-
-
-        this.setState({
-          data: data
-        });
-//console.log(this.state.data[0])
-      }.bind(this)
-    });
+    this.setState({
+      data: this.props.data
+    })
   },
 
   getInitialState: function() {
@@ -186,5 +174,4 @@ RcTable.Caption = React.createClass({
 /**
  * export the element
  */
-//module.exports = RcTable;
 export default RcTable;
