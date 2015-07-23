@@ -10,16 +10,9 @@
  *
  * @type {*|exports}
  */
-//var React = require('react');
-//var $ = require('jquery');
-//var DataTable = require('datatables');
-
-import React from 'react';
-import $ from 'jquery';
-import Table from '@shawnsandy/rc-tables';
-import DataTable from 'datatables';
-
-
+var React = require('react');
+var $ = require('jquery');
+var DataTable = require('datatables');
 /**
  * Briefly describe your Element here
  */
@@ -53,28 +46,22 @@ var RtsDataTable = React.createClass({
         this.setState({
           data: data
         });
-      //console.log(this.state.data)
+//console.log(this.state.data[0])
       }.bind(this)
     });
-   // $(React.findDOMNode(this.refs.dataTable)).find('table').DataTable({});
-   $('#datatable').DataTable({})
-    
+    $(React.findDOMNode(this.refs.dataTable)).DataTable({});
   },
-
   componentWillUpdate: function() {
-    var table = $(React.findDOMNode(this.refs.dataTable)).find('table').DataTable();
+    var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
     table.destroy();
   },
-
   componentDidUpdate: function() {
     $(React.findDOMNode(this.refs.dataTable)).DataTable();
   },
-
   componentWillUnmount: function() {
     var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
     table.destroy();
   },
-
   getInitialState: function() {
     return {
       'data': []
@@ -83,12 +70,117 @@ var RtsDataTable = React.createClass({
 
   render: function() {
 
-    var data = this.state.data;
-    console.log(data);
+    var tr = this.state.data;
+//console.log(tr[0]);
+    var cols = this.props.colTables;
+    var rows = tr.map(function(row, key) {
+//  console.log(key);
+      return (
+        <RtsDataTable.Rows colsTables={cols} data={row} key={key}/>
+
+      )
+    });
+
     return (
       <div>
-        <Table data={data} cols={ this.props.cols } colTables={ this.props.colTables } />
+        <table className={this.props.selector} id="datatable" ref="dataTable">
+          <RtsDataTable.Caption caption={this.props.tableCaption}/>
+          <RtsDataTable.Header cols={this.props.cols }/>
+          <tbody>
+            {rows}
+          </tbody>
+        </table>
       </div>
+    );
+  }
+
+});
+
+RtsDataTable.Rows = React.createClass({
+
+  propTypes: {
+    data: React.PropTypes.object.isRequired,
+    colsTables: React.PropTypes.array.isRequired
+
+  },
+
+  getDefaultProps() {
+    return {
+
+      colsTables: []
+    }
+  },
+
+  render: function() {
+
+    var data = this.props.data;
+//
+    var rows = this.props.colsTables.map(function(d, k) {
+//console.log(d);
+      return (
+        <td key={k}>
+          {data[d]}
+        </td>
+      );
+
+    })
+    return (
+      <tr>
+        {rows}
+      </tr>
+    )
+  }
+
+});
+
+RtsDataTable.Header = React.createClass({
+
+  getDefaultProps() {
+    return {
+
+      cols: [
+        'Id', 'First Name', 'Last Name'
+      ]
+    }
+  },
+
+  render: function() {
+
+    var cols = this.props.cols;
+    var header = cols.map(function(names, key) {
+
+      return (
+        <th key={key}>
+          {names}
+        </th>
+      );
+    });
+
+    return (
+      <thead>
+        <tr>
+          {header}
+        </tr>
+      </thead>
+    );
+  }
+
+});
+
+/**
+ *
+ */
+RtsDataTable.Caption = React.createClass({
+
+  getDefaultProps() {
+    return {
+      caption: ""
+    }
+  },
+
+  render: function() {
+    return (
+      <caption>{ this.props.caption }</caption>
     );
   }
 
@@ -97,4 +189,4 @@ var RtsDataTable = React.createClass({
 /**
  * export the element
  */
-export default RtsDataTable;
+module.exports = RtsDataTable;
