@@ -56,12 +56,13 @@ var RtsDataTable = React.createClass({
       //console.log(this.state.data)
       }.bind(this)
     });
-    //$(React.findDOMNode(this.refs.dataTable)).DataTable({});
+   // $(React.findDOMNode(this.refs.dataTable)).find('table').DataTable({});
+   $('#datatable').DataTable({})
     
   },
 
   componentWillUpdate: function() {
-    var table = $(React.findDOMNode(this.refs.dataTable)).DataTable();
+    var table = $(React.findDOMNode(this.refs.dataTable)).find('table').DataTable();
     table.destroy();
   },
 
@@ -81,7 +82,7 @@ var RtsDataTable = React.createClass({
   },
 
   render: function() {
-    
+
     var data = this.state.data;
     console.log(data);
     return (
